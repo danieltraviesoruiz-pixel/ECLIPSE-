@@ -1,0 +1,1138 @@
+/* =======================================================
+   ECLIPSE FACE v7.0
+   PARTE 2
+   Estructura General
+======================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+}
+
+/* ========================================= */
+/* FONDO */
+/* ========================================= */
+
+#background{
+
+    position:fixed;
+
+    width:100%;
+    height:100%;
+
+    left:0;
+    top:0;
+
+    background:
+    radial-gradient(circle at center,
+    #111 0%,
+    #050505 60%,
+    #000 100%);
+
+}
+
+/* ========================================= */
+/* RESPLANDOR MORADO */
+/* ========================================= */
+
+#backgroundGlow{
+
+    position:absolute;
+
+    width:900px;
+    height:900px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(circle,
+
+    rgba(160,70,255,.30),
+
+    rgba(120,40,220,.12),
+
+    transparent 70%);
+
+    filter:blur(90px);
+
+    animation:ambientGlow 6s infinite ease-in-out;
+
+}
+
+/* ========================================= */
+/* PARTÍCULAS */
+/* ========================================= */
+
+#particles{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    left:0;
+    top:0;
+
+    overflow:hidden;
+
+}
+
+/* ========================================= */
+/* CONTENEDOR */
+/* ========================================= */
+
+#mainContainer{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+/* ========================================= */
+/* MARCO */
+/* ========================================= */
+
+#frame{
+
+    width:520px;
+
+    height:400px;
+
+    border-radius:55px;
+
+    background:
+
+    linear-gradient(
+
+    145deg,
+
+    #1c1c1c,
+
+    #090909
+
+    );
+
+    border:3px solid #2b2b2b;
+
+    box-shadow:
+
+    0 0 20px rgba(180,80,255,.15),
+
+    0 0 50px rgba(180,80,255,.25),
+
+    inset 0 0 25px rgba(255,255,255,.02);
+
+    padding:18px;
+
+}
+
+/* ========================================= */
+/* PANTALLA */
+/* ========================================= */
+
+#screen{
+
+    position:relative;
+
+    width:100%;
+    height:100%;
+
+    border-radius:42px;
+
+    background:
+
+    linear-gradient(
+
+    180deg,
+
+    #0f0f10,
+
+    #040404
+
+    );
+
+    overflow:hidden;
+
+    border:2px solid rgba(255,255,255,.04);
+
+}
+
+/* ========================================= */
+/* CARA */
+/* ========================================= */
+
+#face{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+}
+
+/* ========================================= */
+/* ANIMACIÓN DE LUZ */
+/* ========================================= */
+
+@keyframes ambientGlow{
+
+0%{
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+opacity:.55;
+
+}
+
+50%{
+
+transform:
+translate(-50%,-50%)
+scale(1.12);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+translate(-50%,-50%)
+scale(1);
+
+opacity:.55;
+
+}
+
+}
+
+/* ========================================= */
+/* EFECTO CRISTAL */
+/* ========================================= */
+
+#screen::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+
+180deg,
+
+rgba(255,255,255,.03),
+
+transparent 40%
+
+);
+
+pointer-events:none;
+
+}
+
+/* ========================================= */
+/* ADAPTACIÓN A TELÉFONO */
+/* ========================================= */
+
+@media(max-width:700px){
+
+#frame{
+
+width:92vw;
+
+height:70vw;
+
+max-height:360px;
+
+}
+
+}
+/* =======================================================
+   ECLIPSE FACE v7.0
+   PARTE 3
+   ROSTRO
+======================================================= */
+
+/* ========================================= */
+/* OJOS */
+/* ========================================= */
+
+.eye{
+
+position:absolute;
+
+top:115px;
+
+width:72px;
+
+height:88px;
+
+background:#D8A4FF;
+
+border-radius:18px;
+
+box-shadow:
+
+0 0 12px #C56BFF,
+
+0 0 28px rgba(197,107,255,.9);
+
+transition:.25s;
+
+z-index:20;
+
+}
+
+#leftEye{
+
+left:120px;
+
+}
+
+#rightEye{
+
+right:120px;
+
+}
+
+/* ========================================= */
+/* PÁRPADOS */
+/* ========================================= */
+
+.lid{
+
+position:absolute;
+
+width:72px;
+
+height:0px;
+
+background:#050505;
+
+border-radius:18px;
+
+z-index:30;
+
+transition:.15s;
+
+}
+
+#leftLid{
+
+left:120px;
+
+top:115px;
+
+}
+
+#rightLid{
+
+right:120px;
+
+top:115px;
+
+}
+
+/* ========================================= */
+/* PUPILAS */
+/* ========================================= */
+
+.pupil{
+
+position:absolute;
+
+width:14px;
+
+height:14px;
+
+background:#FFFFFF;
+
+border-radius:50%;
+
+box-shadow:
+
+0 0 10px white;
+
+z-index:40;
+
+transition:.2s;
+
+}
+
+#leftPupil{
+
+left:148px;
+
+top:150px;
+
+}
+
+#rightPupil{
+
+right:148px;
+
+top:150px;
+
+}
+
+/* ========================================= */
+/* BRILLO DEL OJO */
+/* ========================================= */
+
+.shine{
+
+position:absolute;
+
+width:8px;
+
+height:8px;
+
+background:white;
+
+border-radius:50%;
+
+opacity:.85;
+
+filter:blur(.5px);
+
+z-index:50;
+
+}
+
+#leftShine{
+
+left:140px;
+
+top:140px;
+
+}
+
+#rightShine{
+
+right:140px;
+
+top:140px;
+
+}
+
+/* ========================================= */
+/* BOCA */
+/* ========================================= */
+
+#mouth{
+
+position:absolute;
+
+left:50%;
+
+bottom:72px;
+
+transform:translateX(-50%);
+
+width:90px;
+
+height:28px;
+
+border-bottom:5px solid #D8A4FF;
+
+border-radius:0 0 90px 90px;
+
+opacity:0;
+
+transition:.25s;
+
+box-shadow:0 0 10px #B95BFF;
+
+}
+
+/* ========================================= */
+/* CEJAS */
+/* ========================================= */
+
+.brow{
+
+position:absolute;
+
+width:82px;
+
+height:6px;
+
+background:#D8A4FF;
+
+border-radius:20px;
+
+opacity:0;
+
+transition:.25s;
+
+box-shadow:0 0 10px #C56BFF;
+
+}
+
+#leftBrow{
+
+left:112px;
+
+top:92px;
+
+}
+
+#rightBrow{
+
+right:112px;
+
+top:92px;
+
+}
+
+/* ========================================= */
+/* LÁGRIMA */
+/* ========================================= */
+
+#tear{
+
+position:absolute;
+
+left:168px;
+
+top:205px;
+
+width:10px;
+
+height:24px;
+
+background:#78D7FF;
+
+border-radius:20px;
+
+opacity:0;
+
+box-shadow:0 0 12px #78D7FF;
+
+}
+
+/* ========================================= */
+/* MEJILLAS */
+/* ========================================= */
+
+.cheek{
+
+position:absolute;
+
+width:18px;
+
+height:18px;
+
+background:#FF7EDB;
+
+border-radius:50%;
+
+opacity:0;
+
+filter:blur(2px);
+
+}
+
+#leftCheek{
+
+left:105px;
+
+top:220px;
+
+}
+
+#rightCheek{
+
+right:105px;
+
+top:220px;
+
+}
+
+/* ========================================= */
+/* CORAZONES */
+/* ========================================= */
+
+.heart{
+
+position:absolute;
+
+width:24px;
+
+height:24px;
+
+opacity:0;
+
+z-index:60;
+
+}
+
+/* ========================================= */
+/* ESTRELLAS */
+/* ========================================= */
+
+.star{
+
+position:absolute;
+
+width:22px;
+
+height:22px;
+
+opacity:0;
+
+z-index:60;
+
+}
+
+/* ========================================= */
+/* ESPIRALES */
+/* ========================================= */
+
+.spiral{
+
+position:absolute;
+
+width:24px;
+
+height:24px;
+
+opacity:0;
+
+z-index:60;
+
+}
+
+/* ========================================= */
+/* PROCESANDO */
+/* ========================================= */
+
+#processing{
+
+position:absolute;
+
+left:50%;
+
+top:50%;
+
+transform:translate(-50%,-50%);
+
+width:90px;
+
+height:90px;
+
+opacity:0;
+
+}
+
+#processing .dot{
+
+position:absolute;
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#D8A4FF;
+
+box-shadow:0 0 12px #C56BFF;
+
+}
+
+#processing .dot:nth-child(1){top:0;left:40px;}
+#processing .dot:nth-child(2){top:10px;right:10px;}
+#processing .dot:nth-child(3){top:40px;right:0;}
+#processing .dot:nth-child(4){bottom:10px;right:10px;}
+#processing .dot:nth-child(5){bottom:0;left:40px;}
+#processing .dot:nth-child(6){bottom:10px;left:10px;}
+#processing .dot:nth-child(7){top:40px;left:0;}
+#processing .dot:nth-child(8){top:10px;left:10px;}
+
+/* ========================================= */
+/* TRANSICIONES */
+/* ========================================= */
+
+.eye,
+.pupil,
+.shine,
+.brow,
+#mouth,
+#tear,
+.cheek{
+
+transition:
+all .25s ease;
+
+}
+/* =======================================================
+   ECLIPSE FACE v7.0
+   PARTE 4
+   ANIMACIONES
+======================================================= */
+
+/* ========================================= */
+/* PARPADEO */
+/* ========================================= */
+
+@keyframes blink{
+
+0%{
+height:88px;
+}
+
+48%{
+height:88px;
+}
+
+50%{
+height:4px;
+}
+
+52%{
+height:88px;
+}
+
+100%{
+height:88px;
+}
+
+}
+
+/* ========================================= */
+/* RESPIRACIÓN */
+/* ========================================= */
+
+@keyframes breathing{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.01);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ========================================= */
+/* GLOW MORADO */
+/* ========================================= */
+
+@keyframes glowPulse{
+
+0%{
+
+box-shadow:
+
+0 0 15px rgba(180,80,255,.15),
+
+0 0 30px rgba(180,80,255,.25);
+
+}
+
+50%{
+
+box-shadow:
+
+0 0 30px rgba(180,80,255,.35),
+
+0 0 60px rgba(180,80,255,.45);
+
+}
+
+100%{
+
+box-shadow:
+
+0 0 15px rgba(180,80,255,.15),
+
+0 0 30px rgba(180,80,255,.25);
+
+}
+
+}
+
+/* ========================================= */
+/* BOCA HABLANDO */
+/* ========================================= */
+
+@keyframes talking{
+
+0%{
+
+height:10px;
+
+}
+
+25%{
+
+height:28px;
+
+}
+
+50%{
+
+height:15px;
+
+}
+
+75%{
+
+height:36px;
+
+}
+
+100%{
+
+height:10px;
+
+}
+
+}
+
+/* ========================================= */
+/* ESCUCHANDO */
+/* ========================================= */
+
+@keyframes listening{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ========================================= */
+/* OJOS PENSANDO */
+/* ========================================= */
+
+@keyframes thinking{
+
+0%{
+
+transform:translateX(0px);
+
+}
+
+25%{
+
+transform:translateX(-8px);
+
+}
+
+50%{
+
+transform:translateX(8px);
+
+}
+
+75%{
+
+transform:translateX(-5px);
+
+}
+
+100%{
+
+transform:translateX(0px);
+
+}
+
+}
+
+/* ========================================= */
+/* CÍRCULO PROCESANDO */
+/* ========================================= */
+
+@keyframes rotateProcessing{
+
+from{
+
+transform:
+translate(-50%,-50%)
+rotate(0deg);
+
+}
+
+to{
+
+transform:
+translate(-50%,-50%)
+rotate(360deg);
+
+}
+
+}
+
+/* ========================================= */
+/* LÁGRIMA */
+/* ========================================= */
+
+@keyframes tearDrop{
+
+0%{
+
+transform:
+translateY(0px);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+translateY(40px);
+
+opacity:0;
+
+}
+
+}
+
+/* ========================================= */
+/* CORAZÓN */
+/* ========================================= */
+
+@keyframes heartBeat{
+
+0%{
+
+transform:scale(1);
+
+}
+
+25%{
+
+transform:scale(1.3);
+
+}
+
+50%{
+
+transform:scale(.9);
+
+}
+
+75%{
+
+transform:scale(1.25);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+/* ========================================= */
+/* ESTRELLA */
+/* ========================================= */
+
+@keyframes sparkle{
+
+0%{
+
+opacity:0;
+
+transform:scale(.5);
+
+}
+
+50%{
+
+opacity:1;
+
+transform:scale(1.2);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:scale(.5);
+
+}
+
+}
+
+/* ========================================= */
+/* ESPIRAL */
+/* ========================================= */
+
+@keyframes dizzy{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* ========================================= */
+/* APLICACIÓN AUTOMÁTICA */
+/* ========================================= */
+
+#frame{
+
+animation:
+
+glowPulse 4s infinite ease-in-out,
+
+breathing 5s infinite ease-in-out;
+
+}
+
+.eye{
+
+animation:
+
+blink 5s infinite;
+
+}
+
+/* ========================================= */
+/* CLASES */
+/* ========================================= */
+
+.talking{
+
+animation:
+
+talking .18s infinite;
+
+}
+
+.listening{
+
+animation:
+
+listening .6s infinite;
+
+}
+
+.processing{
+
+animation:
+
+rotateProcessing 1.5s linear infinite;
+
+}
+
+.thinking{
+
+animation:
+
+thinking 1.2s infinite;
+
+}
+
+.tearAnimation{
+
+animation:
+
+tearDrop 1.2s infinite;
+
+}
+
+.heartAnimation{
+
+animation:
+
+heartBeat .8s infinite;
+
+}
+
+.starAnimation{
+
+animation:
+
+sparkle .9s infinite;
+
+}
+
+.spiralAnimation{
+
+animation:
+
+dizzy .8s linear infinite;
+
+}
